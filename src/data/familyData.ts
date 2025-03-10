@@ -3,9 +3,9 @@ import { FamilyMember } from '../types/family';
 export const familyData: FamilyMember[] = [
   { 
     id: "1", 
-    name: "George I of Greece", 
+    name: "Kurian", 
     img: "https://via.placeholder.com/100", 
-    spouse: "Olga Constantinovna of Russia", 
+    spouse: "", 
     spouseImg: "https://via.placeholder.com/100",
     children: ["2", "12"], 
     gender: "male",
@@ -13,9 +13,9 @@ export const familyData: FamilyMember[] = [
   },
   { 
     id: "2", 
-    name: "Prince Andrew of Greece", 
+    name: "Paapi", 
     img: "https://via.placeholder.com/100", 
-    spouse: "Princess Alice of Battenberg", 
+    spouse: "", 
     spouseImg: "https://via.placeholder.com/100",
     children: ["3"], 
     parents: ["1"],
@@ -103,7 +103,7 @@ export const familyData: FamilyMember[] = [
   },
   { 
     id: "12", 
-    name: "Princess Sophia of Greece", 
+    name: "Ittak", 
     img: "https://via.placeholder.com/100", 
     parents: ["1"],
     gender: "female",

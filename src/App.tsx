@@ -1,11 +1,18 @@
-import './App.css'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoadingPage from "./pages/LoadingPage";
+import Home from "./pages/Home";
+import "./App.css";
 
-function App() {
+const App: React.FC = () => {
   return (
-   <h1 className='text-3xl font-bold text-center mt-20'> 
-    <p>Hello i have started my react project for family treee</p>
-   </h1>
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoadingPage />} />
+        <Route path="/home" element={<Home />} />
+      </Routes>
+    </Router>
+  );
+};
 
-export default App
+export default App;

@@ -7,7 +7,7 @@ export const familyData: FamilyMember[] = [
     img: "https://via.placeholder.com/100", 
     spouse: "", 
     spouseImg: "https://via.placeholder.com/100",
-    children: ["2", "12"], 
+    children: ["2"], 
     gender: "male",
     parents: []
   },
@@ -102,11 +102,13 @@ export const familyData: FamilyMember[] = [
     children: []
   },
   { 
-    id: "12", 
-    name: "Ittak", 
+    id: "12",
+    name: "Itaak",
     img: "https://via.placeholder.com/100", 
+    spouse: "", 
+    spouseImg: "https://via.placeholder.com/100",
+    children: [], 
     parents: ["1"],
-    gender: "female",
-    children: []
+    gender: "male" 
   }
 ];

@@ -55,6 +55,41 @@ const CoupleUnit: React.FC<{ member: FamilyMember }> = ({ member }) => {
   );
 };
 
+// Arrow component for connecting parent to child
+const Arrow: React.FC<{ multipleChildren?: boolean }> = ({ multipleChildren = false }) => {
+  return (
+    <div className="flex flex-col items-center">
+      {/* Vertical line part of the arrow */}
+      <div className="w-px h-8 bg-gray-400"></div>
+      
+      {/* Arrow head */}
+      <div className="relative w-3 h-3">
+        <div className="absolute w-3 h-3 border-b-2 border-r-2 border-gray-400 transform rotate-45"></div>
+      </div>
+      
+      {/* Extra vertical line for multiple children */}
+      {multipleChildren && <div className="w-px h-4 bg-gray-400"></div>}
+    </div>
+  );
+};
+
+// Horizontal connector for siblings with arrows
+const SiblingConnector: React.FC<{ childrenCount: number }> = ({ childrenCount }) => {
+  if (childrenCount <= 1) return null;
+  
+  return (
+    <div className="relative w-full">
+      <div className="absolute left-0 right-0 bg-gray-400 h-px"></div>
+      {/* Vertical arrows for each child */}
+      <div className="flex justify-around">
+        {Array.from({ length: childrenCount }).map((_, index) => (
+          <Arrow key={index} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 // Create a custom tree component that renders our family structure
 const CustomFamilyTree: React.FC<{ rootId: string }> = ({ rootId }) => {
   // Function to get a member by ID
@@ -82,21 +117,19 @@ const CustomFamilyTree: React.FC<{ rootId: string }> = ({ rootId }) => {
         {/* Render the current member and spouse as a couple */}
         <CoupleUnit member={member} />
         
-        {/* If there are children, render them in a row */}
+        {/* If there are children, render them with arrows */}
         {children.length > 0 && (
           <>
-            {/* Line connecting parent to children */}
-            <div className="w-px h-12 bg-gray-400 my-4"></div>
+            {/* Arrow connecting parent to children */}
+            <Arrow multipleChildren={children.length > 1} />
             
-            {/* Horizontal line for multiple children */}
+            {/* Horizontal connector for multiple children with arrows */}
             {children.length > 1 && (
-              <div className="relative w-full h-1 mb-4">
-                <div className="absolute left-0 right-0 bg-gray-400 h-px"></div>
-              </div>
+              <SiblingConnector childrenCount={children.length} />
             )}
             
             {/* Render all children */}
-            <div className={`flex ${children.length > 2 ? 'flex-wrap justify-center' : 'flex-row'} gap-10`}>
+            <div className={`flex ${children.length > 2 ? 'flex-wrap justify-center' : 'flex-row'} gap-10 mt-4`}>
               {children.map(child => renderFamilyBranch(child.id, level + 1))}
             </div>
           </>
